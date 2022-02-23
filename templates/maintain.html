@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title> Admin Controll </title>
+	</head>
+
+
+	<body align =  "center">
+
+		<div style="color:green;">
+			<marquee> 
+				<h2>
+					<font style="color:black;">Welcome To &nbsp 
+					</font> Bangladesh Railway&nbsp
+					<font style="color:red;"> E-Ticketing </font> 
+					&nbsp <font style="color:black;">Service</font>
+				</h2>
+			</marquee>
+	
+	    </div>
+  
+			<span>	<img  height="80" width="100" src="{% static 'logo.png' %}">	</span>
+  
+				&nbsp
+  
+			<span>	<b><font size="10">Bangladesh Railway</font></b>	</span>
+		
+			<div>
+				<br>
+				<a href="/" > <b>Home</b></a> &nbsp &nbsp
+				{% if user.is_admin %} 
+					Hello, <a href="profile">{{user.username}}</a>&nbsp &nbsp
+					<a href="logout"  title = "Logout"><b>Logout</b></a>&nbsp &nbsp
+					<a href="maintain"  title = "maintain"><b>Maintain</b></a>
+				{% elif user.is_authenticated %} 
+					Hello, <a href="profile">{{user.username}}</a>
+					<a href="logout"  title = "Logout"><b>Logout</b></a> 
+				{% else %}
+					<a href="login" ><b>Login</b></a> &nbsp&nbsp
+					<a href="reg" ><b>Register</b></a>
+				{% endif %} 
+				<br>
+				<br>
+			</div>
+
+		<legend style="background-color:darkblue;"><font color="white"size="8">Admin Controll</font></legend><br>
+		<ul style="list-style-type:none;">
+			<li><a href="stations">Add new stations</a></li><br>
+			<li><a href="station_view">View stations</a></li><br>
+			<li><a href="trains">Add new trains</a></li><br>
+			<li><a href="train_view">View trains</a></li><br>
+			<li><a href="reset">Reset</a></li><br>
+		</ul>
+		<footer>
+  			<pre> &#128648;&nbspGet Train Tickets from the comfort of your home</pre>	
+		</footer>			
+	</body>		
+</html>

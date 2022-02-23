@@ -1,0 +1,245 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <style>
+            .affix {
+                top: 0;
+                width: 100%;
+                z-index: 1 !important;
+            }
+
+            .affix + .container-fluid {
+                margin-top: 70px;
+            }
+        </style>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="{% static 'design.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <title>
+            Train Controll
+        </title>
+    </head>
+
+    <body style = "min-width: 1300px;">
+        <div class = "container-fluid">
+            <div class = "row" style = "">
+                <div class = "col-xs-12 col-sm-12 col-md-12 " style="color:green;">
+                    <marquee> 
+                        <h2><strong>
+                            Welcome To Bangladesh
+                            <font style="color:red;">Railway E-Sheba </font>
+                            Service
+                        </strong></h2>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-xs-12" align = "center" style = "padding-right: 7.5%;">
+                    <img style = "vertical-align:middle;"  height="130" width="130" src="{% static 'logo.png' %}">
+                    <b><font style = "vertical-align:middle; font-style:initial;" size = '6.5%' >&nbsp;Bangladesh&nbsp;Railway</font></b>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="190">
+            <div class="container-fluid navbar-expand-lg">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Railway E-Sheba</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                </div>
+                <div class=" navbar-expand-lg collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        {% if user.is_authenticated %}
+                            {% if user.is_admin %}
+                                <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="maintain"><span class="fas fa-user-shield"></span> Admin Panel <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="stations"><i class='far fa-dot-circle'></i> Add new stations</a></li>
+                                        <li class="active"><a href="trains"><i class='far fa-dot-circle'></i> Add new trains</a></li>
+                                        <li><a href="station_view"><i class='far fa-dot-circle'></i> View stations</a></li>
+                                        <li><a href="train_view"><i class='far fa-dot-circle'></i> View trains</a></li>
+                                        <li><a href="reset"><i class='far fa-dot-circle'></i> Reset</a></li>
+                                    </ul>
+                                </li>
+                                {% comment %} <li><a href="maintain"><span class="fas fa-user-shield"></span> Admin Panel</a></li> {% endcomment %}
+                            {% endif %}
+                            <li><a href="verification"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Verify Ticket</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="profile"><span class="fa fa-user-circle"></span> {{user.first_name}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="profile"><i class='fa fa-user-circle'></i> {{user.first_name}} {{user.last_name}}</a></li>
+                                    <li><a href="tickets"><i class="fa fa-history"></i> Purchase History</a></li>
+                                    <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                </ul>
+                            </li>
+
+                        {% else %}
+                            <li><a href="reg"><span class="fas fa-user-plus"></span> Sign Up</a></li>
+                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class = "container-fluid" style = " background-color: #ffff80; color: white; padding-top: 0px; padding-bottom: 20px; min-height: 600px" align = "center">
+            <form action = "trains" method = "post">{% csrf_token %}
+                <div class = "container-fluid" style = "padding-left: 0px; padding-top: 20px; min-width: 1000px">
+
+                    <div class = "row" style = "">
+                        <div class = " col-xs-4 col-sm-4 col-md-4" style = "max-width: 470px; margin-left: 17%">
+
+                            <div class = "row" style = "background-color: #663300; border-radius: 15px 15px 0px 0px;">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <b><font style = "font-style:initial;" size = '6.5%' >Add&nbsp;New&nbsp;Trains</font></b>
+                                </div>
+                            </div>
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="tid" class="" ><strong><font size = "4%">Train&nbsp;ID</font></strong></label>
+                                    <input type="text" class="form-control" id="tid" name="train_id" maxlength="4" placeholder="0000">
+                                </div>
+                            </div>
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="tnm" class="" ><strong><font size = "4%">Train&nbsp;Name</font></strong></label>
+                                    <input type="text" class="form-control" id="tnm" name="train_name" maxlength="50" placeholder="Station Name">
+                                </div>
+                            </div>
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; 26px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="ftr" class="" ><strong><font size = "4%">Train&nbsp;Factor</font></strong></label>
+                                    <input type="text" class="form-control" id="ftr" name="factors" maxlength="5" placeholder="00.00">
+                                </div>
+                            </div>
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; 26px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="deptim" class="" ><strong><font size = "4%">Departure&nbsp;Time</font></strong></label>
+                                    <input type="time" class="form-control" id="deptim" name="deptim" maxlength="5" placeholder="00.00">
+                                </div>
+                            </div>
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; 26px; padding-right: 52px; padding-top: 13px; " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="offday" class="" ><strong><font size = "4%">Offday</font></strong></label>
+                                    <input type="Text" class="form-control" id="offday" name="offday" maxlength="10">
+                                </div>
+                            </div>
+
+                            
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px; border-radius: 0px 0px 15px 15px; padding-bottom: 17.5px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="stp" class="" ><strong><font size = "4%">Stopages&nbsp;(hold Ctrl to select more&nbsp;than one)</font></strong></label>
+                                    <select multiple class="form-control" id="stp" name = "stopages">
+                                        {% for object in objects %}
+                                            <option value="{{object.station_name}}">{{object.station_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class = " col-xs-4 col-sm-4 col-md-4" style = "max-width: 470px; margin-left: 65px">
+
+                            <div class = "row" style = "background-color: #663300; border-radius: 15px 15px 0px 0px;">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <b><font style = "font-style:initial;" size = '6.5%' >Add&nbsp;Train&nbsp;Seats</font></b>
+                                </div>
+                            </div>
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="acb" class="" ><strong><font size = "4%">AC&nbsp;Barth</font></strong></label>
+                                    <input type="number" class="form-control" id="acb" name="ac_b_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="acs" class="" ><strong><font size = "4%">AC&nbsp;Seat</font></strong></label>
+                                    <input type="number" class="form-control" id="acs" name="ac_s_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+                            
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="fcb" class="" ><strong><font size = "4%">First&nbsp;Class&nbsp;Barth</font></strong></label>
+                                    <input type="number" class="form-control" id="fcb" name="f_b_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+                            
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="fcs" class="" ><strong><font size = "4%">First&nbsp;Class&nbsp;Seat</font></strong></label>
+                                    <input type="number" class="form-control" id="fcs" name="f_s_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+                            
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="ss" class="" ><strong><font size = "4%">Snigdha&nbsp;Seat</font></strong></label>
+                                    <input type="number" class="form-control" id="ss" name="snigdha_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+                            
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="soc" class="" ><strong><font size = "4%">Sovon&nbsp;Chair</font></strong></label>
+                                    <input type="number" class="form-control" id="soc" name="s_chair_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+                            
+                            <div class = "row" style = "background-color: #003300; padding-left: 52px; padding-right: 52px; padding-top: 13px; border-radius: 0px 0px 15px 15px; padding-bottom: 20px; " align = "left">
+                                <div class = "col-xs-12 col-sm-12 col-md-12">
+                                    <label for="suc" class="" ><strong><font size = "4%">Sulovh&nbsp;Chair</font></strong></label>
+                                    <input type="number" class="form-control" id="suc" name="sulov_seat" maxlength="3" placeholder="000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class = "container-fluid" style = "max-width: 1000px; min-width: 1000px; margin-top: 13px">
+                    <div class = "row">
+                        <div class = "col-xs-12 col-sm-12 col-md-12">
+                            <input type="submit" class="btn btn-block" style = "background-color: #14141f; " value="ADD">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class = "container-fluid" style = "background-color: #00802b; color: white; text-align: center; margin-top: 20px;">
+            <div class = "row">
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application is a part of an educational project.</small>
+                </div>
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application was prepared by team 6.</small>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3" style = "padding-bottom: .5%">
+                © 2020 Copyright:<a href="/"> Shabbir Ahmed</a>
+            </div>
+        </div>
+
+    </body>
+</html>

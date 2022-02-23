@@ -1,0 +1,236 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <style>
+            .affix {
+                top: 0;
+                width: 100%;
+                z-index: 1 !important;
+            }
+
+            .affix + .container-fluid {
+                margin-top: 70px;
+            }
+        </style>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="{% static 'design.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+        <title>
+            Home
+        </title>
+    </head>
+
+    <body style = "min-width: 650px;">
+        <div class = "container-fluid">
+            <div class = "row" style = "">
+                <div class = "col-xs-12 col-sm-12 col-md-12 " style="color:green;">
+                    <marquee> 
+                        <h2><strong>
+                            Welcome To Bangladesh
+                            <font style="color:red;">Railway E-Sheba </font>
+                            Service
+                        </strong></h2>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-xs-12" align = "center" style = "padding-right: 7.5%;">
+                    <img style = "vertical-align:middle;"  height="130" width="130" src="{% static 'logo.png' %}">
+                    <b><font style = "vertical-align:middle; font-style:initial;" size = '6.5%' >&nbsp;Bangladesh&nbsp;Railway</font></b>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-inverse" data-spy="affix" data-offset-top="190">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Railway E-Sheba</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="about">About</a></li>
+                        <!--li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li-->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        {% if user.is_authenticated %}
+                            {% if user.is_admin %}
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="maintain"><span class="fas fa-user-shield"></span> Admin Panel <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="stations"><i class='far fa-dot-circle'></i> Add new stations</a></li>
+                                        <li><a href="trains"><i class='far fa-dot-circle'></i> Add new trains</a></li>
+                                        <li><a href="station_view"><i class='far fa-dot-circle'></i> View stations</a></li>
+                                        <li><a href="train_view"><i class='far fa-dot-circle'></i> View trains</a></li>
+                                        <li><a href="reset"><i class='far fa-dot-circle'></i> Reset</a></li>
+                                    </ul>
+                                </li>
+                                {% comment %} <li><a href="maintain"><span class="fas fa-user-shield"></span> Admin Panel</a></li> {% endcomment %}
+                            {% endif %}
+                            <li><a href="verification"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Verify Ticket</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="profile"><span class="fa fa-user-circle"></span> {{user.first_name}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="profile"><i class='fa fa-user-circle'></i> {{user.first_name}} {{user.last_name}}</a></li>
+                                    <li><a href="tickets"><i class="fa fa-history"></i> Purchase History</a></li>
+                                    <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                </ul>
+                            </li>
+
+                        {% else %}
+                            <li><a href="register"><span class="fas fa-user-plus"></span> Sign Up</a></li>
+                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class = "container-fluid" style = "height: 500px; background-image: linear-gradient(rgba(179,179,255,0.4), rgba(255,255,255,0.4)), url('{% static 'main1.jpg' %}'); background-repeat: no-repeat; background-size: 100% 100%; background-blend-mode:  lighten;">
+            <div class = "row" style = "margin-top: 0px">
+                <div class = "col-xs-12 col-sm-12 col-md-6" align = "center">
+                    <b><font size = '7%'>Buy&nbsp;Tickets From&nbsp;Comfort</font></b>
+                </div>
+
+            
+                <form action = "selection" method = "post">{% csrf_token %}
+                    <div class = "col-xs-12 col-sm-12 col-md-5" style = " margin-top: 3%;">
+                        <div class = "row" style = "margin-top: 4%">
+                            <div class = "col-xs-5 col-xs-offset-1 form-group">
+                                <label for = "from" style = "padding-left: 2%" ><i class='fas fa-map-marker-alt'></i><strong><font size = "4%"> From</font></strong></label>
+                                <select class = "form-control" id="from" name = "from">
+                                    <option value="no" > Source</option>
+                                    {% for object in objects %}
+                                        <option value="{{object.station_name}}" >{{object.station_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class = "col-xs-5 form-group" style = "padding-left: 2%">
+                                <label for = "to" style = "padding-left: 2%" ><i class='fas fa-map-marker-alt'></i><strong><font size = "4%"> To</font></strong></label>
+                                <select class = "form-control" id="to" name = "to">
+                                    <option value="no" > Destination</option>
+                                    {% for object in objects %}
+                                        <option value="{{object.station_name}}" >{{object.station_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-xs-5 col-xs-offset-1">
+                                <label for="date" style = "padding-left: 2%" ><i class='fas fa-calendar-alt'></i><font size = "4%"><strong> Date</strong></font></label>
+                                <input type="date" class="form-control" id="date" name = "date" min ='{{min | date:'c'}}' max ='{{max | date:'c'}}' value="{{min | date:'c'}}">
+                            </div>
+                            <div class = "col-xs-5">
+                                <label for="classes" style = "padding-left: 2%" ><i class='fas fa-bus-alt'></i><strong><font size = "4%"> Class</font></strong></label>
+                                <select class = "form-control" id="classes" name = "classes">
+                                    <option value="0"><b>Choose A Class</b></option>
+                                    <option value="ac_b_seat">AC_B</option>
+                                    <option value="ac_s_seat">AC_S</option>
+                                    <option value="f_b_seat">F_BERTH</option>
+                                    <option value="f_s_seat">F_SEAT</option>
+                                    <option value="snigdha_seat">SNIGDHA</option>
+                                    <option value="s_chair_seat">S_CHAIR</option>
+                                    <option value="sulov_seat">SULOV</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = "row" style = "margin-top: 2%">
+                            <div class = "col-xs-5 col-xs-offset-1">
+                                <label for = "adult" style = "padding-left: 2%" ><i class='fas fa-user-tie'></i><strong><font size = "4%"> Adult</font></strong></label>
+                                <select class = "form-control" id="adult" name = "adult">
+                                    <option value="0"> Adult</option>
+                                    <option value="1"> 1 </option>  
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                </select>
+                            </div>
+                            <div class = "col-xs-5" style = "padding-left: 2%">
+                                <label for = "child" style = "padding-left: 2%" ><i class='fas fa-child'></i><strong><font size = "4%"> Child</font></strong></label>
+                                <select class = "form-control" id="child" name = "child">
+                                    <option value="0"> Child</option>
+                                    <option value="1"> 1 </option>  
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = "row" style = "margin-top: 2%; margin-bottom: 4%">
+                            <div class = "col-xs-6 col-xs-offset-3">
+                                <input type="submit" class="btn btn-warning btn-block" value="Search">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class = "container-fluid" style = "margin-top: 1%; margin-right: 3%">
+            <div class = "row">
+                <div class = "col-xs-1 col-sm-1 col-md-1" style = "max-height: 340px; min-height: 115px; padding-top: 10px;" align = "right">
+                    <i class='fas fa-tags' style = "color: #101e56; font-size: 28px"></i>
+                </div>
+                <div class = "col-xs-11 col-sm-11 col-md-3" style = "max-height: 340px; min-height: 115px;">
+                    <strong><font size = "5%"> Get Train Tickets from the comfort of your home</font></strong><br>
+                    Book train tickets from anywhere using the robust ticketing platform exclusively built to provide
+                    the passengers with pleasant ticketing experience. Also check out the mobile app RailSheba to 
+                    further extend your pleasure of booking train tickets.
+                </div>
+
+                <div class = "col-xs-1 col-sm-1 col-md-1" style = "max-height: 340px; min-height: 65px; padding-top: 10px" align = "right">
+                    <i class='far fa-clock' style='color: #101e56; font-size:31.5px'></i>
+                </div>
+                <div class = "col-xs-11 col-sm-11 col-md-3" style = "max-height: 340px; min-height: 65px;">
+                    <strong><font size = "5%"> Train & Ticketing related information at your fingertips</font></strong><br>
+                    Checkout available seats, route information, fare information on real time basis with Esheba Platform.
+                </div>
+
+                <div class = "col-xs-1 col-sm-1 col-md-1" style = "height: 200px; padding-top: 10px" align = "right">
+                    <i class='fas fa-lock' style='color: #101e56; font-size:31.5px'></i>
+                </div>
+                <div class = "col-xs-11 col-sm-11 col-md-3" style = "max-height: 340px; min-height: 95px;">
+                    <strong><font size = "5%"> Pay Securely</font></strong><br>
+                    Pay using your convenient payment option. Bangladesh Railway supports Visa, Master,
+                    Amex & Nexus Cards, Rocket and bKash Mobile Financial Services for your convenience.
+                </div>
+            </div>
+        </div>
+
+        <div class = "container-fluid" style = "background-color: #00802b; color: white; text-align: center; margin-top: 20px;">
+            <div class = "row">
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application is a part of an educational project.</small>
+                </div>
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application was prepared by team 6.</small>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3" style = "padding-bottom: .5%">
+                © 2020 Copyright:<a href="/"> Shabbir Ahmed</a>
+            </div>
+        </div>
+
+    </body>
+</html>

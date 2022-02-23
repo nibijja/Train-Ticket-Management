@@ -1,0 +1,298 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <style>
+            .affix {
+                top: 0;
+                width: 100%;
+                z-index: 1 !important;
+            }
+
+            .affix + .container-fluid {
+                margin-top: 70px;
+            }
+        </style>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="{% static 'design.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <title>
+            Train Selection
+        </title>
+    </head>
+
+    <body style = "min-width: 650px;">
+        <div class = "container-fluid">
+            <div class = "row" style = "">
+                <div class = "col-xs-12 col-sm-12 col-md-12 " style="color:green;">
+                    <marquee> 
+                        <h2><strong>
+                            Welcome To Bangladesh
+                            <font style="color:red;">Railway E-Sheba </font>
+                            Service
+                        </strong></h2>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-xs-12" align = "center" style = "padding-right: 7.5%;">
+                    <img style = "vertical-align:middle;"  height="130" width="130" src="{% static 'logo.png' %}">
+                    <b><font style = "vertical-align:middle; font-style:initial;" size = '6.5%' >&nbsp;Bangladesh&nbsp;Railway</font></b>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="190">
+            <div class="container-fluid navbar-expand-lg">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Railway E-Sheba</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                </div>
+                <div class=" navbar-expand-lg collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li class="active"><a href="#">Schedule</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        {% if user.is_authenticated %}
+                            {% if user.is_admin %}
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="maintain"><span class="fas fa-user-shield"></span> Admin Panel <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="stations"><i class='far fa-dot-circle'></i> Add new stations</a></li>
+                                        <li><a href="trains"><i class='far fa-dot-circle'></i> Add new trains</a></li>
+                                        <li><a href="station_view"><i class='far fa-dot-circle'></i> View stations</a></li>
+                                        <li><a href="train_view"><i class='far fa-dot-circle'></i> View trains</a></li>
+                                        <li><a href="reset"><i class='far fa-dot-circle'></i> Reset</a></li>
+                                    </ul>
+                                </li>
+                                {% comment %} <li><a href="maintain"><span class="fas fa-user-shield"></span> Admin Panel</a></li> {% endcomment %}
+                            {% endif %}
+                            <li><a href="verification"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Verify Ticket</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="profile"><span class="fa fa-user-circle"></span> {{user.first_name}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="profile"><i class='fa fa-user-circle'></i> {{user.first_name}} {{user.last_name}}</a></li>
+                                    <li><a href="tickets"><i class="fa fa-history"></i> Purchase History</a></li>
+                                    <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                </ul>
+                            </li>
+
+                        {% else %}
+                            <li><a href="reg"><span class="fas fa-user-plus"></span> Sign Up</a></li>
+                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class = "container-fluid" style = "background-color: #1a1a1a; min-height: 600px; color: white; width: 100%" align = "left">
+            <div class = "row">
+                <div class = "col-xs-12 col-sm-12 col-md-12 col-sm-offset-4 col-md-offset-5">
+                    <b><font style = "font-style:initial;" size = '6.5%' >Travel Details</font></b>
+                </div>
+            </div>
+
+            <div class = "row" style = "margin-top: 29px">
+                <div class = "col-xs-12 col-sm-5 col-md-4 col-sm-offset-2 col-md-offset-3" style = "text-align: left">
+                    <b><font size = '4%'>From&nbsp;&nbsp;:&nbsp;{{frome}}</font></b>
+                </div>
+                
+                <div class = "col-xs-12 col-sm-5 col-md-4" style = "text-align: left">
+                    <b><font size = '4%'>To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{to}}</font></b>
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col-xs-12 col-sm-5 col-md-4 col-sm-offset-2 col-md-offset-3" style = "text-align: left">
+                    <b><font size = '4%'>Date&nbsp;&nbsp;&nbsp;:&nbsp;{{date}}</font></b>
+                </div>
+                
+                <div class = "col-xs-12 col-sm-5 col-md-4" style = "text-align: left">
+                    <b><font size = '4%'>Day&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{day}}</font></b>
+                </div>
+            </div>
+            
+            <div class = "row" style = "padding-top: 65px">
+                <div class = "col-xs-12 col-sm-12 col-md-12 col-sm-offset-2 col-md-offset-3">
+                    <b><font style = "font-style:initial;" size = '6.5%' >Available Trains</font></b>
+                </div>
+            </div>
+
+            {% for object in objects %}
+                <form action = "confirm" method = "post">{% csrf_token %}
+                    <div class = "container-fluid" align = "left" style = "margin-left: -10px; margin-top: 13px; min-width: 600px"> 
+                        <input type="hidden" name="frome"       value = "{{frome}}">
+                        <input type="hidden" name="to"          value = "{{to}}">
+                        <input type="hidden" name="date"        value = "{{date}}">
+                        <input type="hidden" name="day"         value = "{{day}}">
+                        <input type="hidden" name="train_name"  value = "{{object.train_name}}">
+                        <input type="hidden" name="train_id"    value = "{{object.train_id}}">
+                        <input type="hidden" name="adltst"      value = "{{adult}}">
+                        <input type="hidden" name="chldst"      value = "{{child}}">
+                        <input type="hidden" name="deptim"      value = "{{object.departure_time}}">
+
+                        <div class = "row">
+                            <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3" align = "left">
+                                <b><font size = '4%'>Train&nbsp;Name</font></b>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-5">
+                                <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{object.train_name}}</font></b>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                <b><font size = '4.6'>Train&nbsp;ID</font></b>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{object.train_id}}</font></b>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                <b><font size = '4%'>Adult&nbsp;Seat</font></b>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{adult}}</font></b>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                <b><font size = '4%'>Child&nbsp;Seat</font></b>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{child}}</font></b>
+                            </div>
+                        </div>
+
+                        {% if classes == 'ac_b_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "AC Barth">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;AC Barth</font></b>
+                                </div>
+                            </div>
+
+                        {% elif classes == 'ac_s_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "AC Seat">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;AC Seat</font></b>
+                                </div>
+                            </div>
+
+                        {% elif classes == 'f_b_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "First Claass Barth">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;First Claass Barth</font></b>
+                                </div>
+                            </div>
+
+                        {% elif classes == 'f_s_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "First Class Seat">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;First Class Seat</font></b>
+                                </div>
+                            </div>
+
+                        {% elif classes == 'snigdha_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "Snigdha">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Snigdha</font></b>
+                                </div>
+                            </div>
+
+                        {% elif classes == 's_chair_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "Sovon Seat">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3"  align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Sovon Chair</font></b>
+                                </div>
+                            </div>
+
+                        {% elif classes == 'sulov_seat' %}
+                            <input type="hidden" name="classes"   size="10%" value = "Sulov Seat">
+                            <div class = "row">
+                                <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3" align = "left">
+                                    <b><font size = '4%'>Class</font></b>
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                    <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Sulov Seat</font></b>
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                        <div class = "row">
+                            <div class="col-xs-4 col-sm-2 col-md-2 col-sm-offset-2 col-md-offset-3" align = "left">
+                                <b><font size = '4%'>Departure&nbsp;Time</font></b>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-5" align = "left">
+                                <b><font size = '4%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{object.departure_time}}</font></b>
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-2 col-md-offset-3" style = " padding-top: 13px; padding-bottom: 13px">
+                                <input type="submit" class="btn btn-info btn-block" value="View Full Details">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% endfor %}
+            
+        </div>
+
+        <div class = "container-fluid" style = "background-color: #00802b; color: white; text-align: center; margin-top: 13px;">
+            <div class = "row">
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application is a part of an educational project.</small>
+                </div>
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application was prepared by team 6.</small>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3" style = "padding-bottom: .5%">
+                © 2020 Copyright:<a href="/"> Shabbir Ahmed</a>
+            </div>
+        </div>
+
+    </body>
+</html>

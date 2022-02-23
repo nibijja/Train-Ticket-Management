@@ -1,0 +1,277 @@
+{% load static %}
+<!doctype html>
+<html class="no-js"  lang="en">
+
+	<head>
+		<!-- META DATA -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet" />
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+
+		<!-- TITLE OF SITE -->
+		<title>Travel</title>
+
+		<!-- favicon img -->
+		<link rel="shortcut icon" type="image/icon" href="{% static 'logo/favicon.png' %}"/>
+
+		<!--font-awesome.min.css-->
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+
+		<!--animate.css-->
+		<link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+
+		<!--hover.css-->
+		<link rel="stylesheet" href="{% static 'css/hover-min.css' %}">
+
+		<!--datepicker.css-->
+		<link rel="stylesheet"  href="{% static 'css/datepicker.css' %}" >
+
+		<!--owl.carousel.css-->
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}"/>
+
+		<!-- range css-->
+        <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" />
+
+		<!--bootstrap.min.css-->
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="{% static 'css/bootsnav.css' %}"/>
+
+		<!--style.css-->
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+		<!--responsive.css-->
+		<link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+
+		
+
+	</head>
+
+	<body style="background-color: #eee;">
+		
+
+		<!-- main-menu Start -->
+		<header class="top-area" style="background-color: rgb(68, 66, 66);">
+			<div class="header-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-2">
+							<div class="logo">
+								<a href="/">
+									B<span class="primary">R</span>
+								</a>
+							</div><!-- /.logo-->
+						</div><!-- /.col-->
+						<div class="col-sm-10">
+							<div class="main-menu">
+							
+								<!-- Brand and toggle get grouped for better
+									 mobile display -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+										<i class="fa fa-bars"></i>
+									</button><!-- / button-->
+								</div><!-- /.navbar-header-->
+								<div class="collapse navbar-collapse">		  
+									<ul class="nav navbar-nav navbar-right">
+										<li ><a class="current" href="/">home</a></li>
+										<li ><a href="about">About</a></li>
+										<li ><a href="contact">Contact </a></li>
+										
+										{% if user.is_authenticated %}
+											{% if user.is_admin %}
+												<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="maintain">Admin Panel <span class="caret"></span></a>
+													<ul class="dropdown-menu">
+														<li class="active"><a href="stations"> Add new stations</a></li>
+														<li class="active"><a href="trains"> Add new trains</a></li>
+														<li class="active"><a href="station_view"> View stations</a></li>
+														<li class="active"><a href="train_view"> View trains</a></li>
+														<li class="active"><a href="reset"> Reset</a></li>
+													</ul>
+												</li>
+												{% comment %} <li><a href="maintain"><span class="fas fa-user-shield"></span> Admin Panel</a></li> {% endcomment %}
+											{% endif %}
+											<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="profile"><span class="fa fa-user-circle"></span> {{user.first_name}} <span class="caret"></span></a>
+												<ul class="dropdown-menu">
+													<li class="active"><a href="profile"><i class='fa fa-user-circle'></i> {{user.first_name}} {{user.last_name}}</a></li>
+													<li class="active"><a href="verification"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Verify Ticket</a></li>
+													<li class="active"><a href="tickets"><i class="fa fa-history"></i> Purchase History</a></li>
+													<li class="active"><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+												</ul>
+											</li>
+
+											{% else %}
+												<li><a href="register">Sign Up</a></li>
+												<li><a href="login"> Login</a></li>
+										{% endif %}
+									</ul>
+								</div><!-- /.navbar-collapse -->
+							</div><!-- /.main-menu-->
+						</div><!-- /.col-->
+					</div><!-- /.row -->
+					<div class="home-border"></div><!-- /.home-border-->
+				</div><!-- /.container-->
+			</div><!-- /.header-area -->
+
+		</header><!-- /.top-area-->
+		<!-- main-menu End -->
+
+		<br>	<br>	<br>	<br>
+
+		<section id="ticket">
+			<div class="container">
+				<h1 style="font-size: 35px; font-weight: bold; letter-spacing: 1px;font-family:Georgia, 'Times New Roman', Times, serif ;"><span style="color: rgb(99, 160, 189);">OUR PROJECT </span></h1>
+			</div>
+	<div class="roww">
+	  <div></div>
+	  <div class="img">
+		<div class="image">
+		</div>
+	<div class="paragraph">
+		<i>Ticket Management System</i>
+		  <br>
+		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia ipsum, ex veritatis eum aliquam nobis nostrum ut vel? Ex veritatis voluptatem nisi quam ratione repellendus necessitatibus odit soluta odio natus.</p>				
+		<br>
+		  <button type="button" class="btn">Subscribe</button>
+		</div>
+	  </div>
+	  <div></div>
+	</div>
+  </section>
+<br> <br>
+
+<section id="presented">
+	<div class="container">
+		<h1 style="font-size: 38px; font-weight: bold;letter-spacing: 1px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">PRESENTED <i style="color: rgb(99, 160, 189);">BY US</i></h1>
+	</div>
+	<div class="about-grid">
+		<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+							<img class="card-img-top"  src="{% static 'images/tahasin.jpg' %}" style="width:100%">
+							<div class="card-body">
+							  <h4 class="card-title" style="text-align: center; padding:7px 0px; font-size: 20px; color: black; font-weight: bold;">Tahasin Elias</h4>
+							  <p class="card-text" style="text-align: center; padding:5px 0px; font-size: 20px; color: black;" >CSE-01506479</p>
+							  <div style="text-align: center;padding-bottom: 15px; margin-top: 10px;">
+							  <a href="#"><i class="fa fa-dribbble" style="color: rgb(24, 24, 23); font-size: 18px;"></i></a> 
+							  <a href="#"><i class="fa fa-twitter" style="color: rgb(26, 29, 26); font-size: 18px;"></i></a>  
+							  <a href="#"><i class="fa fa-linkedin" style="color: rgb(22, 21, 21); font-size: 18px;"></i></a>  
+							  <a href="#"><i class="fa fa-facebook" style="color: rgb(22, 22, 21); font-size: 18px;"></i></a> </div>
+							</div>
+						  </div>
+					</div>
+					<div class="col-md-4">
+						<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+							<img class="card-img-top"  src="{% static 'images/Shabbir.jpg' %}" style="width:100%">
+							<div class="card-body">
+							  <h4 class="card-title"  style="text-align: center; padding:7px 0px; font-size: 20px; color: black; font-weight: bold;">Shabbir Ahmed</h4>
+							  <p class="card-text" style="text-align: center; padding:5px 0px; font-size: 20px; color: black;">CSE-01506480</p>
+							  <div style="text-align: center;padding-bottom: 15px; margin-top: 10px;">
+								<a href="#"><i class="fa fa-dribbble" style="color: rgb(26, 24, 23); font-size: 18px;"></i></a> 
+								<a href="#"><i class="fa fa-twitter" style="color: rgb(17, 17, 16); font-size: 18px; "></i></a>  
+								<a href="#"><i class="fa fa-linkedin" style="color: rgb(17, 16, 16); font-size: 18px;"></i></a>  
+								<a href="#"><i class="fa fa-facebook" style="color: rgb(15, 15, 15); font-size: 18px;"></i></a> </div>
+							</div>
+						  </div>
+					</div>
+					<div class="col-md-4">
+						<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);">
+							<img class="card-img-top"  src="{% static 'images/rakhi.jpg' %}" style="width:100%">
+							<div class="card-body">
+							  <h4 class="card-title"  style="text-align: center; padding:7px 0px; font-size: 20px; color: black; font-weight: bold;">Rashida Akter</h4>
+							  <p class="card-text" style="text-align: center; padding:5px 0px; font-size: 20px; color: black;">CSE-01506481</p>
+							  <div style="text-align: center;padding-bottom: 15px; margin-top: 10px;">
+								<a href="#"><i class="fa fa-dribbble" style="color: rgb(20, 20, 20); font-size: 18px;"></i></a> 
+								<a href="#"><i class="fa fa-twitter" style="color: rgb(28, 29, 28); font-size: 18px;"></i></a>  
+								<a href="#"><i class="fa fa-linkedin" style="color: rgb(19, 18, 18); font-size: 18px;"></i></a>  
+								<a href="#"><i class="fa fa-facebook" style="color: rgb(17, 17, 17); font-size: 18px;"></i></a> </div>
+							</div>
+						  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+	
+		<!--service end-->
+		
+	<section id="footer">
+		<div class="foot">
+		<div class="footing">
+      <div class="foot1">
+			<h4 style="font-size: 15px; color: whitesmoke;">	This web application is a part of an educational project.</h4>
+			</div>
+			<div class="foot2" >
+				<h4 style="font-size: 15px; color: whitesmoke;">This is the project of Ticket Management System</h4>
+			</div>
+			<div class="foot3" >
+       <h4 style=" font-weight: bolder; color: whitesmoke;font-size: 15px;">All rights reserved by &copy; team 5</h4>
+			</div>
+			<div class="foot4">
+				<h4 style="font-size: 15px; color:whitesmoke;">This web application was prepared by <span style="color: rgb(248, 252, 24);"> team 5</span></h4>
+			</div>
+		</div>
+	</div>
+	</section>
+		
+	
+	
+
+
+		
+
+		
+		
+		
+
+
+
+
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+		<!--modernizr.min.js-->
+		<script  src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+
+		<!--bootstrap.min.js-->
+		<script  src="{% static 'js/bootstrap.min.js' %}"></script>
+
+		<!-- bootsnav js -->
+		<script src="{% static 'js/bootsnav.js' %}"></script>
+
+		<!-- jquery.filterizr.min.js -->
+		<script src="{% static 'js/jquery.filterizr.min.js' %}"></script>
+
+		<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+		<!--jquery-ui.min.js-->
+        <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+
+        <!-- counter js -->
+		<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+		<script src="assets/js/waypoints.min.js"></script>
+
+		<!--owl.carousel.js-->
+        <script  src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+        <!-- jquery.sticky.js -->
+		<script src="{% static 'js/jquery.sticky.js' %}"></script>
+
+        <!--datepicker.js-->
+        <script  src="{% static 'js/datepicker.js' %}"></script>
+
+		<!--Custom JS-->
+		<script src="{% static 'js/custom.js' %}"></script>
+
+	</body>
+
+</html>

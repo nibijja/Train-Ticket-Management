@@ -1,0 +1,267 @@
+{% load static %}
+<!doctype html>
+<html class="no-js"  lang="en">
+
+	<head>
+		<!-- META DATA -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet" />
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+
+		<!-- TITLE OF SITE -->
+		<title>Travel</title>
+
+		<!-- favicon img -->
+		<link rel="shortcut icon" type="image/icon" href="{% static 'logo/favicon.png' %}"/>
+
+		<!--font-awesome.min.css-->
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+
+		<!--animate.css-->
+		<link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+
+		<!--hover.css-->
+		<link rel="stylesheet" href="{% static 'css/hover-min.css' %}">
+
+		<!--datepicker.css-->
+		<link rel="stylesheet"  href="{% static 'css/datepicker.css' %}" >
+
+		<!--owl.carousel.css-->
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}"/>
+
+		<!-- range css-->
+        <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" />
+
+		<!--bootstrap.min.css-->
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="{% static 'css/bootsnav.css' %}"/>
+
+		<!--style.css-->
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+		<!--responsive.css-->
+		<link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+
+	</head>
+
+	<body style="background-color: #eee;">
+		<!-- main-menu Start -->
+		<header class="top-area" style="background-color: rgb(68, 66, 66);">
+			<div class="header-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-2">
+							<div class="logo">
+								<a href="/">
+									B<span class="primary">R</span>
+								</a>
+							</div><!-- /.logo-->
+						</div><!-- /.col-->
+						<div class="col-sm-10">
+							<div class="main-menu">
+							
+								<!-- Brand and toggle get grouped for better
+									 mobile display -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+										<i class="fa fa-bars"></i>
+									</button><!-- / button-->
+								</div><!-- /.navbar-header-->
+								<div class="collapse navbar-collapse">		  
+									<ul class="nav navbar-nav navbar-right">
+										<li ><a class="current" href="/">home</a></li>
+										<li ><a href="about">About</a></li>
+										<li ><a href="contact">Contact </a></li>
+										
+										{% if user.is_authenticated %}
+											{% if user.is_admin %}
+												<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="maintain">Admin Panel <span class="caret"></span></a>
+													<ul class="dropdown-menu">
+														<li class="active"><a href="stations"> Add new stations</a></li>
+														<li class="active"><a href="trains"> Add new trains</a></li>
+														<li class="active"><a href="station_view"> View stations</a></li>
+														<li class="active"><a href="train_view"> View trains</a></li>
+														<li class="active"><a href="reset"> Reset</a></li>
+													</ul>
+												</li>
+												{% comment %} <li><a href="maintain"><span class="fas fa-user-shield"></span> Admin Panel</a></li> {% endcomment %}
+											{% endif %}
+											<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="profile"><span class="fa fa-user-circle"></span> {{user.first_name}} <span class="caret"></span></a>
+												<ul class="dropdown-menu">
+													<li class="active"><a href="profile"><i class='fa fa-user-circle'></i> {{user.first_name}} {{user.last_name}}</a></li>
+													<li class="active"><a href="verification"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Verify Ticket</a></li>
+													<li class="active"><a href="tickets"><i class="fa fa-history"></i> Purchase History</a></li>
+													<li class="active"><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+												</ul>
+											</li>
+
+											{% else %}
+												<li><a href="register">Sign Up</a></li>
+												<li><a href="login"> Login</a></li>
+										{% endif %}
+									</ul>
+								</div><!-- /.navbar-collapse -->
+							</div><!-- /.main-menu-->
+						</div><!-- /.col-->
+					</div><!-- /.row -->
+					<div class="home-border"></div><!-- /.home-border-->
+				</div><!-- /.container-->
+			</div><!-- /.header-area -->
+
+		</header><!-- /.top-area-->
+		<!-- main-menu End -->
+		<br>	<br>	<br>	<br>
+
+        <div class = "container-fluid" style = " background-color: #ffffff; color: rgb(7, 7, 7); padding-top: 30px;margin-bottom: -20px; padding-bottom: 20px; min-height: 800px; min-width: 1000px" align = "center">
+             <div class = "row" style = "background-color: #5ccde0; padding:7px 0;">
+                <div class = "col-xs-12 col-sm-12 col-md-12">
+                    <b><font style = "font-style:initial; font-family: Georgia, 'Times New Roman', Times, serif; text-transform: uppercase;" size = '6.5%' >Train&nbsp;Information</font></b>
+                </div>
+            </div>
+            <div class="container-fluid">
+            <table class="table table-bordered" style="margin-top: 2rem;">
+                <thead>
+                    <tr>
+                        <th>Train ID</th>
+                        <th>Train Name</th>
+                        <th>Factor</th>
+                        <th>Departure Time</th>
+                        <th>Off Day</th>
+                        <th>Stopages</th>
+                        <th>AC Barth</th>
+                        <th>AC Seat</th>
+                        <th>F_C Barth</th>
+                        <th>F_C Seat</th>
+                        <th>Snigdha</th>
+                        <th>Sovon Chair</th>
+                        <th>Sulov</th>
+                        <th>Total</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                {% for object in objects %}
+                <tbody>
+                    <tr>
+                        <td>{{object.train_id}}</td>
+                        <td>{{object.train_name}}</td>
+                        <td>{{object.factors}}</td>
+                        <td>{{object.departure_time}}</td>
+                        <td>{{object.offday}}</td>
+                        <td>{{object.stopages}}</td>
+                        <td>{{object.ac_b_seat}}</td>
+                        <td>{{object.ac_s_seat}}</td>
+                        <td>{{object.f_b_seat}}</td>
+                        <td>{{object.f_s_seat}}</td>
+                        <td>{{object.snigdha_seat}}</td>
+                        <td>{{object.s_chair_seat}}</td>
+                        <td>{{object.sulov_seat}}</td>
+                        <td>{{object.total}}</td>
+                        <!--button type="button" style="background-color:darkblue;" ><a href="reg" ><strong><font color="White"><b>👆 Register</b></strong></font></a></button> &nbsp-->
+                        <td><button type="button" class="btn btn-dark" name=" train_id " value = "{{object.train_id}}" > <a href="edit/{{object.train_id}}"  title = "edit"><b>Edit</b></a></button></td>
+                        <td><button type="button" class="btn btn-dark"><a href="delete/{{ object.train_id }}"  title = "delete"><b>Delete</b></a></button></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+			</table>
+
+           <!--<div class = "row" style = "background-color: #003300;; border-radius: 0px 0px 15px 15px;"></div>-->
+            </div>
+</div>
+        </div>
+
+        <section id="footer">
+            <div class="foot">
+            <div class="footing">
+          <div class="foot1">
+                <h4 style="font-size: 15px; color: whitesmoke;">	This web application is a part of an educational project.</h4>
+                </div>
+                <div class="foot2" >
+                    <h4 style="font-size: 15px; color: whitesmoke;">This is the project of Ticket Management System</h4>
+                </div>
+                <div class="foot3" >
+           <h4 style=" font-weight: bolder; color: whitesmoke;font-size: 15px;">All rights reserved by &copy; Shabbir Ahmed</h4>
+                </div>
+                <div class="foot4">
+                    <h4 style="font-size: 15px; color:whitesmoke;">This web application was prepared by <span style="color: rgb(248, 252, 24);"> team 5</span></h4>
+                </div>
+            </div>
+        </div>
+        </section>
+            
+        
+        
+    
+    
+            
+    
+            
+            
+            
+    
+    
+    
+    
+            <script src="{% static 'js/jquery.js' %}"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+    
+            <!--modernizr.min.js-->
+            <script  src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    
+    
+            <!--bootstrap.min.js-->
+            <script  src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+            <!-- bootsnav js -->
+            <script src="{% static 'js/bootsnav.js' %}"></script>
+    
+            <!-- jquery.filterizr.min.js -->
+            <script src="{% static 'js/jquery.filterizr.min.js' %}"></script>
+    
+            <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    
+            <!--jquery-ui.min.js-->
+            <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    
+            <!-- counter js -->
+            <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+            <script src="assets/js/waypoints.min.js"></script>
+    
+            <!--owl.carousel.js-->
+            <script  src="{% static 'js/owl.carousel.min.js' %}"></script>
+    
+            <!-- jquery.sticky.js -->
+            <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    
+            <!--datepicker.js-->
+            <script  src="{% static 'js/datepicker.js' %}"></script>
+    
+            <!--Custom JS-->
+            <script src="{% static 'js/custom.js' %}"></script>
+
+		
+            {% if messages %}
+                <div class="messages" id = "msg">
+                    {% for message in messages %}
+                        {%if "logedin" in message.tags %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>alert('{{ message }}');</script></li>
+                        {%elif "login" in message.tags %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>alert('{{ message }}');</script></li>
+                        {%elif "respas" in message.tags %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><script>alert('{{ message }}');</script></li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
+        </body>
+    
+    </html>

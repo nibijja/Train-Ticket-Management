@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="{% static 'design.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <title>
+            Sign Up
+        </title>
+    </head>
+
+    <body style = " min-width: 680px;">
+        <div style="color:green;">
+			<marquee> 
+				<h2><strong>
+                    Welcome To Bangladesh
+					<font style="color:red;">Railway E-Sheba </font>
+                    Service
+				</strong></h2>
+            </marquee>
+		</div>
+
+        <div class="container-fluid">
+            <div class = "col-sm-12" align = "center" style = "padding-right: 7.5%;">
+                <img style = "vertical-align:middle;"  height="130" width="130" src="{% static 'logo.png' %}">
+                <b><font style = "vertical-align:middle; font-style:initial;" size = '6.5%' >Bangladesh&nbsp;Railway</font></b>
+            </div>
+        </div>
+
+        <div class = "container-fluid">
+            <div class = "col-md-12 well-sm " style = "background-color:lavender; font-weight: 900" align = "center">
+                <font size = "5.5%"><strong><span class ="fas fa-user-plus"></span> Sign Up</strong></font>
+            </div>
+        </div>
+        <br>
+        <form action = "register" method = "post">{% csrf_token %}
+            <div class = "container-fluid" align = "center" style = "max-width: 1200px">
+                <div class = "col-md-8 well-sm" style = "background-color:LightGray; margin-left: 16.6%; margin-right: 16.6%; border-radius: 15px;" align = "center" >
+                    <div class="form-group">
+
+                        <div class = "row" align = "left">
+                            <div class = "col-md-6" >
+                                <label for="fnm" class="fas fa-user" style = "padding-left: 1%" ><strong><font size = "4%"> First Name</font></strong></label>
+                                <input type="text" class="form-control" id="fnm" name = "first_name">
+                            </div>
+                            <div class = "col-md-6">
+                                <label for="lnm" class="fas fa-user" style = "padding-left: 1%" ><strong><font size = "4%"> Last Name</font></strong></label>
+                                <input type="text" class="form-control" id="lnm" name = "last_name">
+                            </div>
+                        </div>
+
+                        <div class = "row" align = "left" style = "padding-top:1%">
+                            <div class = "col-md-6">
+                                <label for="cn" class="fa fa-mobile-phone" style = "padding-left: 1%" ><strong><font size = "4%"> Contact No. </font></strong></label>
+                                <input type="text" class="form-control" id="cn" name = "mobile2" maxlength="11">
+                            </div>
+                            <div class = "col-md-6" >
+                                <label class="fa fa-hand-o-up" style = "padding-left: 1%" ><strong><font size = "4%"> Select Gender</font></strong></label><br>
+                                <label class="radio-inline" style = "padding-left: 5.2%" >
+                                    <input type="radio" name="gender" value = "Male"><i class='fas fa-male'></i><b> Male &nbsp</b>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="gender" value = "Female"><i class='fas fa-female'></i><b> Female &nbsp</b>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="gender" value = "Others"><b>Others</b>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class = "row" align = "left" style = "padding-top:1%">
+                            <div class = "col-md-12" >
+                                <label class="fa fa-envelope" for="ema" style = "padding-left: 1%" ><strong><font size = "4%"> E-mail Address</font></strong></label>
+                                <input type="email" class="form-control" id="ema" name = "email">
+                            </div>
+                        </div>
+
+                        <div class = "row" align = "left" style = "padding-top:1%">
+                            <div class = "col-md-6" >
+                                <label for="pas" class="fas fa-lock" style = "padding-left: 1%" ><strong><font size = "4%"> Password</font></strong></label>
+                                <input type="password" autocomplete="off" maxlength="8" class="form-control" id="pas" name = "password1">
+                            </div>
+                            <div class = "col-md-6">
+                                <label for="pas" class="fas fa-lock" style = "padding-left: 1%" ><strong><font size = "4%"> Confirm Password</font></strong></label>
+                                <input type="password" autocomplete="off" maxlength="8" class="form-control" id="pas" name = "password2">
+                            </div>
+                        </div>
+
+                        <div class = "row" align = "left" style = "padding-top:2%">
+                            <div class = "col-md-12">
+                                <input type="submit" class="btn btn-info btn-block" value="Register">
+                            </div>
+                        </div><br>
+
+                        <p >Already have an account? Login <a href = "login"><span class="glyphicon glyphicon-log-in"></span> here</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+        <footer class="page-footer font-small teal pt-4">
+            <div class = "container-fluid" style = "margin-top: 5.94%; background-color: #00802b; color: white; text-align: center;">
+                <div class = "row">
+                    <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                        <small>This web application is a part of an educational project.</small>
+                    </div>
+                    <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                        <small>This web application was prepared by team 6.</small>
+                    </div>
+                </div>
+                <div class="footer-copyright text-center py-3" style = "padding-bottom: .5%">© 2020 Copyright:
+                    <a href="/"> Shabbir Ahmed</a>
+                </div>
+            </div>
+        </footer>
+		
+    </body>
+</html>

@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <style>
+            .affix {
+                top: 0;
+                width: 100%;
+                z-index: 1 !important;
+            }
+
+            .affix + .container-fluid {
+                margin-top: 70px;
+            }
+        </style>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="{% static 'design.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <title>
+            Verification
+        </title>
+    </head>
+
+    <body style = "min-width: 650px;">
+        <div class = "container-fluid">
+            <div class = "row" style = "">
+                <div class = "col-xs-12 col-sm-12 col-md-12 " style="color:green;">
+                    <marquee> 
+                        <h2><strong>
+                            Welcome To Bangladesh
+                            <font style="color:red;">Railway E-Sheba </font>
+                            Service
+                        </strong></h2>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-xs-12" align = "center" style = "padding-right: 7.5%;">
+                    <img style = "vertical-align:middle;"  height="130" width="130" src="{% static 'logo.png' %}">
+                    <b><font style = "vertical-align:middle; font-style:initial;" size = '6.5%' >&nbsp;Bangladesh&nbsp;Railway</font></b>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="190">
+            <div class="container-fluid navbar-expand-lg">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Railway E-Sheba</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                </div>
+                <div class=" navbar-expand-lg collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        {% if user.is_authenticated %}
+                            {% if user.is_admin %}
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="maintain"><span class="fas fa-user-shield"></span> Admin Panel <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="stations"><i class='far fa-dot-circle'></i> Add new stations</a></li>
+                                        <li><a href="trains"><i class='far fa-dot-circle'></i> Add new trains</a></li>
+                                        <li><a href="station_view"><i class='far fa-dot-circle'></i> View stations</a></li>
+                                        <li><a href="train_view"><i class='far fa-dot-circle'></i> View trains</a></li>
+                                        <li><a href="reset"><i class='far fa-dot-circle'></i> Reset</a></li>
+                                    </ul>
+                                </li>
+                                {% comment %} <li><a href="maintain"><span class="fas fa-user-shield"></span> Admin Panel</a></li> {% endcomment %}
+                            {% endif %}
+                            <li class = "active"><a href="verification"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Verify Ticket</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="profile"><span class="fa fa-user-circle"></span> {{user.first_name}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="profile"><i class='fa fa-user-circle'></i> {{user.first_name}} {{user.last_name}}</a></li>
+                                    <li><a href="tickets"><i class="fa fa-history"></i> Purchase History</a></li>
+                                    <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                </ul>
+                            </li>
+
+                        {% else %}
+                            <li><a href="reg"><span class="fas fa-user-plus"></span> Sign Up</a></li>
+                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class = "container-fluid" style = " background-color: #b3ecff; color: white; padding-top: 20px; padding-bottom: 20px; min-height: 600px">
+            <div class = "container-fluid" style = "background-color: #006080; margin-left: 1%; margin-right: 1%; padding-top: 7.5px; padding-bottom: 7.5px"  align = "center">
+                <b> Request to purchase ticket has been submited. To verify the purchase, pay the total ammount using authorized payment method(s) along with invoice no. as reference. In return message the verification code will be provided</b>
+            </div>
+
+            {% for message in messages %}
+                <h3> {{message}}</h3>
+            {% endfor %}
+
+            <div class = "container-fluid" style = "margin-left: -.9%">
+                {% for ticket in tickets %}
+                    <form action = "verify" method = "post">{% csrf_token %}
+
+                        <input type="hidden" name="invoice_no"  value = "{{ticket.ticket_id}}">
+                        <input type="hidden" name="day"  		value = "{{ticket.day}}">
+                        <input type="hidden" name="train_id"  	value = "{{ticket.train_id}}">
+                        <input type="hidden" name="classes"		value = "{{ticket.classes}}">
+                        <input type="hidden" name="adult"  		value = "{{ticket.adult}}">
+                        <input type="hidden" name="child"  		value = "{{ticket.child}}">
+
+                        <div class = "container" style = "margin-left: 1%; margin-top: 2%; background-color: #002233; padding-top: .5%; width: 500px">
+                            <div class = "row">
+                                <div class="col-xs-4" style = "margin-left: 1.2%">
+                                    <b><font size = '4%'>Invoice No. </font></b>
+                                </div>
+                                <div class="col-xs-6" style = "margin-left: -8%">
+                                    <b><font size = '4%'>&nbsp: {{ticket.ticket_id}}</font></b>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-xs-4" style = "margin-left: 1.2%">
+                                    <b><font size = '4%'>From. </font></b>
+                                </div>
+                                <div class="col-xs-6" style = "margin-left: -8%">
+                                    <b><font size = '4%'>&nbsp: {{ticket.frome}}</font></b>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-xs-4" style = "margin-left: 1.2%">
+                                    <b><font size = '4%'>To </font></b>
+                                </div>
+                                <div class="col-xs-6" style = "margin-left: -8%">
+                                    <b><font size = '4%'>&nbsp: {{ticket.to}}</font></b>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-xs-4" style = "margin-left: 1.2%">
+                                    <b><font size = '4%'>On </font></b>
+                                </div>
+                                <div class="col-xs-7" style = "margin-left: -8%">
+                                    <b><font size = '4%'>&nbsp: {{ticket.day}}, {{ticket.date}}     </font></b>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-xs-4" style = "margin-left: 1.2%">
+                                    <b><font size = '4%'>Status </font></b>
+                                </div>
+                                <div class="col-xs-6" style = "margin-left: -8%">
+                                    <b><font size = '4%'>&nbsp: Not Verified</font></b>
+                                </div>
+                            </div>
+                            <div class = "row" style = "padding-bottom: 2.5%"> 
+                            <b><font size = "4%"><labelfor="vri" style = "padding-left: 4.1%; padding-top: 1.4%" > Enter Verification Code</label></font></b>
+                                <div class = "col-xs-8" >
+                                    <input type="text" class="form-control" id="vri" name = "verify_code">
+                                </div>
+                                <div class = "col-xs-4">
+                                    <input type="submit" class="btn btn-info btn-block" value="Verify">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class = "container-fluid" style = "background-color: #00802b; color: white; text-align: center; margin-top: 20px;">
+            <div class = "row">
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application is a part of an educational project.</small>
+                </div>
+                <div class = "col-xs-6" style = "padding-top: 2.5%; padding-bottom: 1%">
+                    <small>This web application was prepared by team 6.</small>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3" style = "padding-bottom: .5%">
+                © 2020 Copyright:<a href="/"> Shabbir Ahmed</a>
+            </div>
+        </div>
+
+    </body>
+</html>

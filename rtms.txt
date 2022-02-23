@@ -1,0 +1,14 @@
+.LOG
+8:05 PM 15-Feb-21
+add following in settings:
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+8:46 PM 15-Feb-21
+import following library:
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import auth
+from .models import Profile
